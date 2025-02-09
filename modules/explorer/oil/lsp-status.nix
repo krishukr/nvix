@@ -1,5 +1,11 @@
-{ inputs, pkgs, config, ... }:
 {
+  inputs,
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+lib.mkIf config.nvix.explorer.oil {
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
       name = "oil-lsp-diagnostics";
