@@ -1,5 +1,6 @@
 { helpers, lib, ... }:
 {
+  plugins.todo-comments.enable = true;
   plugins.snacks = {
     enable = true;
     settings = {
@@ -16,7 +17,6 @@
       };
     };
   };
-
 
   autoCmd = [
     {
