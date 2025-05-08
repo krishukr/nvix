@@ -1,5 +1,7 @@
 { helpers, lib, ... }:
 {
+  # Generalise for all colorschemes
+  # <https://github.com/folke/snacks.nvim/discussions/1306#discussioncomment-12266647>
   plugins.todo-comments.enable = true;
   plugins.snacks = {
     enable = true;

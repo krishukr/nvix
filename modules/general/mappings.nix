@@ -17,14 +17,17 @@ let
   ];
 
   xv = [
-    (mkKeymapWithOpts "x" "j"
-      ''v:count || mode(1)[0:1] == "no" ? "j" : "gj"''
-      "Move down"
-      { expr = true; })
-    (mkKeymapWithOpts "x" "k"
-      ''v:count || mode(1)[0:1] == "no" ? "k" : "gk"''
-      "Move up"
-      { expr = true; })
+    (mkKeymapWithOpts "x" "j" ''v:count || mode(1)[0:1] == "no" ? "j" : "gj"'' "Move down" {
+      expr = true;
+    })
+    (mkKeymapWithOpts "x" "k" ''v:count || mode(1)[0:1] == "no" ? "k" : "gk"'' "Move up" {
+      expr = true;
+    })
+    (mkKeymap "n" "<leader>st" (helpers.mkRaw # lua
+      ''
+        require('stay-centered').toggle
+      ''
+    ) "Toggle stay-centered.nvim")
   ];
 
   insert = [
@@ -53,46 +56,18 @@ let
 
     (mkKeymap "n" "n" "nzzzv" "Move to center")
     (mkKeymap "n" "N" "Nzzzv" "Moving to center")
-
-    (mkKeymap "n" "<leader>ft"
-      (helpers.mkRaw # lua
-        ''
-          function()
-            vim.ui.input({ prompt = "Enter FileType: " }, function(input)
-              local ft = input
-              if not input or input == "" then
-                ft = vim.bo.filetype
-              end
-              vim.o.filetype = ft
-            end)
-          end
-        '')
-      "Set Filetype")
-
-    (mkKeymap "n" "<leader>o"
-      (helpers.mkRaw # lua
-        ''
-
-          function()
-            local file = vim.fn.expand('<cfile>')
-
-            local is_macos = vim.fn.has('macunix') == 1
-            local is_linux = vim.fn.has('unix') == 1 and not is_macos
-            local is_windows = vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1
-
-            local function open_file(f)
-              local cmd
-              if is_macos then
-                cmd = 'open'
-              elseif is_linux then
-                cmd = 'xdg-open'
-              elseif is_windows then
-                cmd = 'start'
-              else
-                vim.notify('Unsupported OS for opening files', vim.log.levels.ERROR)
-                return
-              end
-              vim.fn.jobstart({ cmd, f }, { detach = true })
+    (mkKeymap "n" "<leader>sC" (helpers.mkRaw # lua
+      ''
+        require('stay-centered').toggle
+      ''
+    ) "Toggle stay-centered.nvim")
+    (mkKeymap "n" "<leader>ft" (helpers.mkRaw # lua
+      ''
+        function()
+          vim.ui.input({ prompt = "Enter FileType: " }, function(input)
+            local ft = input
+            if not input or input == "" then
+              ft = vim.bo.filetype
             end
 
             if file:match('^%w+://') then
