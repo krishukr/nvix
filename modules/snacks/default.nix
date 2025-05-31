@@ -52,6 +52,20 @@
               { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
             Snacks.toggle.option("background",
               { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
+            Snacks.toggle.new({
+              id = "center",
+              name = "stay-centered.nvim",
+              get = function ()
+                return require('stay-centered').cfg.active
+              end,
+              set = function (state)
+                if state then
+                  require('stay-centered').activate()
+                else
+                  require('stay-centered').deactivate()
+                end
+              end,
+            }):map("<leader>sC")
           end
         '';
     }
