@@ -61,29 +61,6 @@ let
         require('stay-centered').toggle
       ''
     ) "Toggle stay-centered.nvim")
-    (mkKeymap "n" "<leader>ft" (helpers.mkRaw # lua
-      ''
-        function()
-          vim.ui.input({ prompt = "Enter FileType: " }, function(input)
-            local ft = input
-            if not input or input == "" then
-              ft = vim.bo.filetype
-            end
-
-            if file:match('^%w+://') then
-              vim.fn['netrw#BrowseX'](file, 0)
-            elseif vim.fn.filereadable(file) == 1 then
-              open_file(file)
-            elseif vim.fn.isdirectory(file) == 1 then
-              vim.cmd('edit ' .. vim.fn.fnameescape(file))
-            else
-              vim.fn['netrw#BrowseX'](file, 0)
-            end
-          end
-
-        '')
-      "Open"
-    )
 
     (mkKeymapWithOpts "n" "j"
       ''v:count || mode(1)[0:1] == "no" ? "j" : "gj"''
