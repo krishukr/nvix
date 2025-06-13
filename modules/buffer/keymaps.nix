@@ -1,6 +1,8 @@
-{ config, ... }:
-let inherit (config.nvix.mkKey) mkKeymap wKeyObj;
-in {
+{ config, helpers, ... }:
+let
+  inherit (config.nvix.mkKey) mkKeymap wKeyObj;
+in
+{
 
   wKeyList = [
     (wKeyObj [ "<leader>b" "" "buffers" ])
@@ -8,9 +10,25 @@ in {
   ];
 
   keymaps = [
-    (mkKeymap "n" "<leader>b." "<cmd>:lua require('harpoon.mark').add_file()<cr>" "Add File to Harpoon")
-    (mkKeymap "n" "<leader>bm" "<cmd>:lua require('buffer_manager.ui').toggle_quick_menu()<cr>" "Buffer Manager")
-    (mkKeymap "n" "<leader>bb" "<cmd>:lua require('harpoon.ui').toggle_quick_menu()<cr>" "Harpoon ui")
+    (mkKeymap "n" "<leader>b." (helpers.mkRaw # lua
+      ''
+        function()
+          harpoon = require("harpoon")
+          harpoon:list():add()
+        end
+      ''
+    ) "Add File to Harpoon")
+    (mkKeymap "n" "<leader>bm" "<cmd>:lua require('buffer_manager.ui').toggle_quick_menu()<cr>"
+      "Buffer Manager"
+    )
+    (mkKeymap "n" "<leader>bb" (helpers.mkRaw # lua
+      ''
+        function()
+          harpoon = require("harpoon")
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end
+      ''
+    ) "Harpoon ui")
 
     (mkKeymap "n" "<leader>bp" "<cmd>:BufferLinePick<cr>" "Buffer Line Pick")
     (mkKeymap "n" "<leader>qc" "<cmd>:bp | bd #<cr>" "Buffer close")
