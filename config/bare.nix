@@ -7,6 +7,7 @@
     self.nvixModules.explorer
     self.nvixModules.telescope
     self.nvixModules.colorschemes
+    self.nvixModules.snacks
   ];
   colorscheme = "tokyonight"; # as it has light variant also
 }
