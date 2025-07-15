@@ -23,6 +23,12 @@ Nvix is a **modular** and **powerful** Neovim configuration built over [Nixvim](
 
 ---
 
+## ⚠️ Disclaimer
+
+This is a [v5](https://github.com/niksingh710/nvix/tree/bdb6e57eddc9166003f0e87dd3ac5eca93756cf2) fork of Nikhil Singh's original [nvix](https://github.com/niksingh710/nvix). Great thanks to him!
+
+This repo is mostly for my personal use. And I might or might not keep it updated to the upstream. I will try to do my best.
+
 ## 🛠️ Why Use Nvix?
 
 - **Fully Modularized**: Every configuration is split into modules, making it easy to use only what you need.
@@ -39,19 +45,19 @@ Nvix is a **modular** and **powerful** Neovim configuration built over [Nixvim](
 ### Bare Configuration
 For a minimal setup with basic mappings and options, ideal for quick edits:
 ```sh
-nix run "github:niksingh710/nvix#bare"
+nix run "github:krishukr/nvix#bare"
 ```
 
 ### Core Configuration
 For a fully-featured daily driver with LSP and language support:
 ```sh
-nix run "github:niksingh710/nvix#core"
+nix run "github:krishukr/nvix#core"
 ```
 
 ### Full Configuration
 For a comprehensive setup with jumbo packs (e.g., LaTeX support):
 ```sh
-nix run "github:niksingh710/nvix#full"
+nix run "github:krishukr/nvix#full"
 ```
 
 ---
@@ -76,7 +82,7 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 
 ```nix
 inputs = {
-  nvix.url = "github:niksingh710/nvix";
+  nvix.url = "github:krishukr/nvix";
 };
 
 environment.packages = [
@@ -203,7 +209,7 @@ Then, add Nvix modules to your configuration:
 # Add Nvix to inputs
 inputs = {
   ...
-  nvix.url = "github:niksingh710/nvix";
+  nvix.url = "github:krishukr/nvix";
   ...
 };
 
