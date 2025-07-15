@@ -40,8 +40,7 @@ let
     (mkKeymap "n" "<a-j>" "<cmd>m .+1<cr>==" "Move line Down")
     (mkKeymap "n" "<a-k>" "<cmd>m .-2<cr>==" "Move line up")
 
-    (mkKeymap "n" "<leader>qq" "<cmd>quitall!<cr>" "Quit!")
-    (mkKeymap "n" "<leader>qw" "<cmd>:lua vim.cmd('close')<cr>" "Quit!")
+    (mkKeymap "n" "<leader>q!" "<cmd>quitall!<cr>" "Quit!")
 
     (mkKeymap "n" "<leader><leader>" "<cmd>nohl<cr>" "no highlight!")
     (mkKeymap "n" "<leader>A" "ggVG" "select All")

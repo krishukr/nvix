@@ -6,6 +6,7 @@ in {
     (mkKeymap "n" "<leader>ql" "<cmd>Autosession search<CR>" "List Session")
     (mkKeymap "n" "<leader>qd" "<cmd>Autosession delete<CR>" "Delete Session")
     (mkKeymap "n" "<leader>qs" "<cmd>SessionSave<CR>" "Save Session")
+    (mkKeymap "n" "<leader>qq" "<cmd>wall<CR><cmd>SessionSave<CR><cmd>quitall!<CR>" "Save & Quit")
     (mkKeymap "n" "<leader>qD" "<cmd>SessionPurgeOrphaned<CR>"
       "Purge Orphaned Sessions")
   ];
