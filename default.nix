@@ -4,6 +4,7 @@
       inherit (inputs) nixvim;
       extraSpecialArgs = {
         inherit inputs self; # This will ensure all inputs are available in the module
+        helpers = inputs.nixvim.lib.nixvim;
       };
 
       nvix = type: {
